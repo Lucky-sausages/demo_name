@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class WebRequest
+class WebRequest
 {
     private String getWebContent(String url)
     {
