@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "login"))
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "login"))
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,4 +19,8 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<People> people;
+
+    public User(String login) {
+        this.login = login;
+    }
 }
