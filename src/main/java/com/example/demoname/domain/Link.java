@@ -16,4 +16,8 @@ public class Link {
     @ManyToOne
     private People people;
 
+    public Link(String link, People people) {
+        this.link = link;
+        this.people = people;
+    }
 }

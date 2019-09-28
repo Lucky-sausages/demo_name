@@ -15,6 +15,8 @@ public class People {
     @ManyToOne
     private User user;
 
+    String name;
+
     @OneToMany(mappedBy = "people")
     private List<Post> posts;
 
