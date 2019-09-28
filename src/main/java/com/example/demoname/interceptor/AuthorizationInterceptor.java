@@ -2,6 +2,7 @@ package com.example.demoname.interceptor;
 
 import com.example.demoname.controller.ApiController;
 import com.example.demoname.service.JwtService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;

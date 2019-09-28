@@ -9,6 +9,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.demoname.domain.User;
 import com.example.demoname.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -22,7 +23,9 @@ public class JwtService {
         this.userRepository = userRepository;
     }
 
-    private static final String SECRET = "SECRET_WORD";
+    @Value("${jwt.secret}")
+    private String SECRET;
+
     public Optional<User> find(String token) {
         try {
             JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SECRET))

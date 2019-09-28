@@ -12,12 +12,12 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query(value = "SELECT * FROM user WHERE login=?1 AND passwordSha=SHA1(?2)", nativeQuery = true)
+    @Query(value = "SELECT * FROM users WHERE login=?1 AND passwordSha=SHA1(?2)", nativeQuery = true)
     Optional<User> findByLoginAndPassword(String login, String password);
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE user SET passwordSha=SHA1(?2) WHERE id=?1", nativeQuery = true)
+    @Query(value = "UPDATE users SET passwordSha=SHA1(?2) WHERE id=?1", nativeQuery = true)
     void updatePassword(long id, String password);
 
 }
