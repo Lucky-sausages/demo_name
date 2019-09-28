@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+  <head>
+    <meta charset="utf-8">
+    <title>LS</title>
+    <link rel="stylesheet" href="css/headAndBubles.css">
+    <link rel="stylesheet" href="css/newsPage.css">
+      <link rel="stylesheet" href="css/philters.css">
+  </head>
+
+  <body>
+    <div class="page_header">   
+      <table class="logo" style="margin-top: 0px;">
+          <tr><td style="width: 400px">
+              LS           
+              
+          </td>
+          <td class="lout" style="margin-top: 10px; left: 0px; width: 300px"><button class="lout">Добавить</button></td>
+          <td class="lout" style="margin-top: 10px; left: 0px; width: 300px"> <button class="lout">Выход</button> </td>
+              </tr>
+      </table> 
+      </div>
+        <!--<div  id="filtr">
+      </div>
+      <a class="triangle" href="#filtr"></a>
+        Если мне будет не слишком западло доделывать кнопку прокрутки вверх-->
+      
+      <div class="block">
+      <div class="philter">
+      <div class="buble">
+          <button class="phb" style="border-radius: 20px 20px 0px 0px; ">Все</button>
+          <input type="text" id="person"
+                  value ="Поиск"  onfocus="if (this.value == 'Поиск') {this.value = ''; this.style.color = '#000';}" onblur="if (this.value == '') {this.value = 'Поиск'; this.style.color = '#777';}" />
+          <!--подумать головой и придумать какую-нибудь красивую штуку с вводом текста-->
+          <button class="phb">Выбрать человека</button>
+          
+          <select class="chgr">
+            <option value="1" selected disabled>
+            <div style="color: #f00;">Выбор группы</div></option>
+            <option value="2">Группа1</option>
+            <option value="3">Группа2</option>
+            <option value="4">Группа3</option>
+            <option value="5">Группа4</option>
+ </select>
+          <button class="phb group" style="border-radius: 0px 0px 20px 20px;">Выбрать группу</button>
+          
+      </div>
+      
+        <div class="buble" style="font-size: 17px; font-family: cursive;">
+        <table style="margin-left: 20px;">
+            <div class="line"><tr><td> <input type="checkbox"></td><td>Последний</td>
+            <td><select name="timePeriod"  style="     width: 185px;">
+            <option value="1" selected>Час</option>
+            <option value="2">День</option>
+            <option value="3">Неделя</option>
+            <option value="4">Месяц</option>
+            </select></td></tr></div>
+            <tr><td> <input type="checkbox"></td><td>Источник</td>
+            <td><select name="from"  style="width: 185px;">
+            <option value="1" selected>Все</option>
+            <option value="2">ВКонтакте</option>
+            <option value="3">Instagram</option>
+            <option value="4">Facebook</option>
+            </select></td></tr>
+                      <tr><td> <input type="checkbox"></td><td>Еще фильтр</td>
+            <td><select name="more"  style="width: 185px;">
+            <option value="1" selected>Кто знает</option>
+            <option value="2">ВКонтакте</option>
+            <option value="3">Instagram</option>
+            <option value="4">Facebook</option>
+            </select></td></tr>
+            </table>    
+          </div>
+          
+      </div>
+      
+
+      <div class="buble">
+          <img class="new_per_pic" src="/img/S4MGhA4hWFU.jpg">
+            <br><a class="new_name" href="http://vk.com/feed">Person's Name</a>
+                  <button class="save">+</button> <!--кнопка сохранения в список?-->
+          <div class="new_time">
+              20 апр в 16:07
+              </div>
+                  
+            
+          <div class="new_text">new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              
+          </div>
+                  
+                  <!-- ATT сюда я хочу получать куски в формате  
+                    <img class="new_pic" src="ссылка" style="width: N%"
+                    где N = 100%, если картинка одна
+                    и N = 40% во всех остальных случаях-->
+            <img class="new_pic" src="/img/vor.jpeg" style="width: 40%">
+            <img class="new_pic" src="/img/S4MGhA4hWFU.jpg" style="width: 40%">
+        
+      </div>
+                  
+                  
+
+              <div class="buble">
+          <img class="new_per_pic" src="/img/S4MGhA4hWFU.jpg">
+            <br><a class="new_name" href="http://vk.com/feed">Person's Name</a>
+          <div class="new_time">
+              20 апр в 16:07
+              </div>
+                  
+            <img class="new_pic" src="/img/d_E4PEsDRJA.jpg" style="width: 40%">
+            <img class="new_pic" src="/img/vor.jpeg" style="width: 40%">
+      </div>
+          
+    
+
+      
+      <div class="buble">
+          <img class="new_per_pic" src="/img/d_E4PEsDRJA.jpg">
+            <br><a class="new_name" href="http://vk.com/feed">Person's Name</a>
+          <div class="new_time">
+              20 апр в 16:07
+              </div>
+            
+          <div class="new_text">
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              
+              
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              
+              
+          </div>
+            <img class="new_pic" src="/img/chell_and_glados_by_azure_star-d3gt5r6.jpg">
+          
+      </div>
+      
+      <div class="buble">
+          <img class="new_per_pic" src="/img/cY5JmWPw1cA.jpg">
+            <br><a class="new_name" href="http://vk.com/feed">Person's Name</a>
+          <div class="new_time">
+              20 апр в 16:07
+              </div>
+            
+          <div class="new_text">
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              new comes here new comes here new comes here new comes here new comes here new comes here 
+              
+          </div>
+            <img class="new_pic" src="/img/GT32uw.png">
+          
+      </div>
+      </div>
+      
+      
+  </body>
+</html>

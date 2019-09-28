@@ -1,0 +1,63 @@
+.philter{
+    float:right;
+    
+    margin-top: 0px;
+    width: 380px;
+    margin-left: 0px;
+ 
+}
+
+.philter .buble{
+    width: 380px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    
+}
+
+.line{
+    width: 500px;
+}
+
+.phb:hover
+{ 
+    background-color: #cfc;
+}
+
+
+.phb{
+    width: 380px;
+    height: 40px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-color: white;
+    box-shadow: 0 0 0 0 #fff;   
+    border: 0;
+    padding: 0;
+    font-family: Bradley Hand, cursive;
+    font-size: 17px;
+}
+
+#person{
+    width: 336px;
+    height: 40px;
+    margin-left: 20px;
+    border: 0px solid #cccccc;
+    font-family: Bradley Hand, cursive;
+    font-size: 17px;
+    color : #777;
+    border-bottom: 1px dashed #000;
+}
+
+select{
+     width: 340px;
+    height: 40px;
+    margin-left: 20px;
+    margin-top: 0px;
+    
+    background-color: #ffff;
+    box-shadow: 0 0 0 0 #ffff;   
+    border: 0;
+    padding: 0;
+    font-family: Bradley Hand, cursive;
+    font-size: 17px;
+}
