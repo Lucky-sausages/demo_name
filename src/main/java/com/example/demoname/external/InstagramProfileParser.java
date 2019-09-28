@@ -14,7 +14,7 @@ public class InstagramProfileParser
     private Map<String, String> queryMap;
     private String userId;
 
-    public InstagramProfileParser(DocumentContext parsedData)
+    InstagramProfileParser(DocumentContext parsedData)
     {
         this(parsedData, null, true);
     }
