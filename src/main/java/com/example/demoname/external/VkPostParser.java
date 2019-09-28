@@ -21,9 +21,11 @@ public class VkPostParser {
         queryMap.put("ids", "$.response.items[*].id");
         queryMap.put("date", "$.response.items[%d].date");
         queryMap.put("text", "$.response.items[%d].text");
-        queryMap.put("attachments", "$.response.items[%d].attachments[*]");
+        queryMap.put("attachments_types", "$.response.items[%d].attachments[*].type");
+        queryMap.put("attachment", "$.response.items[%d].attachments[%d]");
         queryMap.put("original_id", "$.response.items[%d].copy_history[0].id");
         queryMap.put("original_owner_id", "$.response.items[%d].copy_history[0].owner_id");
+        queryMap.put("photo_link", "$.response.items[%d].attachments[%d].photo.sizes[*].url");
        // queryMap.put("original_attachments", "$.response.items[%d].copy_history[%d].attachments[*]");
        // queryMap.put("original_text", "$.response.items[%d].copy_history[%d].text");
         }
@@ -36,6 +38,24 @@ public class VkPostParser {
         for (Object item : array)
             outputList.add((Integer)item);
         return outputList;
+    }
+
+    public List<String> getAttachmentsTypes(int id)
+    {
+        List<String> outputList = new ArrayList<>();
+        JSONArray array = parsedData.read(String.format(queryMap.get("attachments_types"), id));
+        for (Object item : array)
+            outputList.add((String)item);
+        return outputList;
+    }
+
+    public String getPhotoLink(int post_number, int attachment_number ){
+
+        List<String> outputList = new ArrayList<>();
+        JSONArray array = parsedData.read(String.format(queryMap.get("photo_link"), post_number, attachment_number));
+        for (Object item : array)
+            outputList.add((String)item);
+        return outputList.get(outputList.size()-1);
     }
 
 
@@ -70,8 +90,22 @@ public class VkPostParser {
         return outputList;
     }
 
-    public List<MediaDTO> getMedia(int i){
+    public List<MediaDTO> getMedia(int post_number){
         List<MediaDTO> outputList = new ArrayList<>();
+        try {
+            List<String> types = getAttachmentsTypes(post_number);
+            String link="";
+            for (int j=0;j<types.size();j++){
+                if (types.get(j).equals("photo")){
+                    link = getPhotoLink(post_number,j);
+                }
+
+                MediaDTO  mediaDTO = new MediaDTO();
+                mediaDTO.setLink(link);
+
+                outputList.add(mediaDTO);
+            }
+        } catch (Exception e){}
 
         return outputList;
     }
