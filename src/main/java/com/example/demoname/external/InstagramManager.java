@@ -1,6 +1,6 @@
 package com.example.demoname.external;
 
-import com.example.demoname.domain.Post;
+import com.example.demoname.dto.PostDTO;
 import com.jayway.jsonpath.DocumentContext;
 
 public class InstagramManager
@@ -11,7 +11,7 @@ public class InstagramManager
         return new InstagramProfileParser(profileParsedJson);
     }
 
-    public static Post getPostByShortCode(String shortCode)
+    public static PostDTO getPostByShortCode(String shortCode)
     {
         DocumentContext postParsedJson = InstagramWebRequest.getInstance().getPostParsedJson(shortCode);
         return InstagramPostParser.getInstance().parse(postParsedJson);

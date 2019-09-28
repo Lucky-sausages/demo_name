@@ -1,8 +1,7 @@
 package com.example.demoname.external;
 
-import com.example.demoname.domain.Link;
-import com.example.demoname.domain.Media;
-import com.example.demoname.domain.Post;
+import com.example.demoname.dto.MediaDTO;
+import com.example.demoname.dto.PostDTO;
 import com.jayway.jsonpath.DocumentContext;
 import net.minidev.json.JSONArray;
 
@@ -17,21 +16,27 @@ class InstagramPostParser
         queryMap = new HashMap<>();
         queryMap.put("shortcode", "$.graphql.shortcode_media.shortcode");
         queryMap.put("__typename", "$.graphql.shortcode_media.__typename");
+        queryMap.put("timestamp", "$.graphql.shortcode_media.taken_at_timestamp");
         queryMap.put("display_url", "$.graphql.shortcode_media.display_url");
         queryMap.put("video_url", "$.graphql.shortcode_media.video_url");
         queryMap.put("caption", "$.graphql.shortcode_media.edge_media_to_caption.edges[0].node.text");
         queryMap.put("sidecar", "$.graphql.shortcode_media.edge_sidecar_to_children.edges[*].node");
     }
 
-    Post parse(DocumentContext parsedDocument)
+    PostDTO parse(DocumentContext parsedDocument)
     {
         final String getPostTypePath = queryMap.get("__typename");
         String postType = parsedDocument.read(getPostTypePath);
         String shortCode = parsedDocument.read(queryMap.get("shortcode"));
-        Post post = new Post();
+        PostDTO post = new PostDTO();
         String caption = parsedDocument.read(queryMap.get("caption"));
         post.setText(caption);
         post.setLink(String.format("https://instagram.com/p/%s/", shortCode));
+
+        int timestamp = parsedDocument.read(queryMap.get("timestamp"));
+        Date date = new Date(timestamp * 1000L);
+        post.setDate(date);
+
         switch (postType)
         {
             case "GraphImage":
@@ -47,38 +52,35 @@ class InstagramPostParser
         return post;
     }
 
-    private void parseGraphImage(DocumentContext parsedDocument, Post post)
+    private void parseGraphImage(DocumentContext parsedDocument, PostDTO post)
     {
         String displayUrl = parsedDocument.read(queryMap.get("display_url"));
-        Media media = new Media();
+        MediaDTO media = new MediaDTO();
         media.setLink(displayUrl);
-        media.setPost(post);
-        List<Media> mediaList = new ArrayList<>();
+        List<MediaDTO> mediaList = new ArrayList<>();
         mediaList.add(media);
         post.setMedia(mediaList);
     }
 
-    private void parseGraphVideo(DocumentContext parsedDocument, Post post)
+    private void parseGraphVideo(DocumentContext parsedDocument, PostDTO post)
     {
         String videoUrl = parsedDocument.read(queryMap.get("video_url"));
-        Media media = new Media();
+        MediaDTO media = new MediaDTO();
         media.setLink(videoUrl);
-        media.setPost(post);
-        List<Media> mediaList = new ArrayList<>();
+        List<MediaDTO> mediaList = new ArrayList<>();
         mediaList.add(media);
         post.setMedia(mediaList);
     }
 
-    private void parseGraphSidecar(DocumentContext parsedDocument, Post post)
+    private void parseGraphSidecar(DocumentContext parsedDocument, PostDTO post)
     {
         JSONArray sidecarNodes = parsedDocument.read(queryMap.get("sidecar"));
-        List<Media> mediaList = new ArrayList<>();
+        List<MediaDTO> mediaList = new ArrayList<>();
         for (Object nodeObj : sidecarNodes)
         {
             LinkedHashMap node = (LinkedHashMap) nodeObj;
             String typeName = (String) node.get("__typename");
-            Media media = new Media();
-            media.setPost(post);
+            MediaDTO media = new MediaDTO();
             switch (typeName)
             {
                 case "GraphImage":
