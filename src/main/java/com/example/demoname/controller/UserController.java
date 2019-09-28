@@ -27,8 +27,8 @@ public class UserController {
     }
 
     @GetMapping("/auth")
-    public Map auth(@RequestBody UserDTO userDTO) {
-        User user = userService.findByLoginAndPassword(userDTO.getLogin(), userDTO.getPassword()).orElseThrow(() -> new ValidationException("Wrong name or password"));
+    public Map auth(@RequestParam String login, @RequestParam String password) {
+        User user = userService.findByLoginAndPassword(login, password).orElseThrow(() -> new ValidationException("Wrong name or password"));
         Map<String, String> res = new HashMap<>();
         res.put("token", jwtService.create(user));
         return res;
