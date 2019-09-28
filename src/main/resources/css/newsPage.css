@@ -1,0 +1,74 @@
+
+.new_text{
+    font-family: cursive;
+    margin: 10px 20px 5px 20px;
+    font-size: 15px;
+}
+
+/*фотография профиля*/
+.new_per_pic{
+    height: 50px;
+    width:  50px;
+    border-radius: 10px 10px 10px 10px;
+    margin: 20px 20px 10px 20px;
+    float: left;
+}
+/*картинка*/
+.new_pic{
+    margin: 10px 20px 10px 20px;
+    border-radius: 10px 10px 10px 10px;
+    max-width:  560px;
+    max-height: 560px;
+}
+
+.new_name{
+    font-family: Bradley Hand, cursive;
+    font-size: 17px;
+    margin: 20px 20px 0px 0px;
+    color: green;    
+}
+
+.new_time{
+     font-family: Bradley Hand, cursive;
+     font-size: 10px;
+     color: gray;
+     margin: 0px 0px 10px 0px;   
+}
+/* "+" кнопка сохранения поста */
+.save{
+    float: right;
+    margin-right: 50px;
+    font-family: Comic Sans, cursive;
+    height: 40px;
+    width:  40px;
+    border-radius: 50%;
+    font-size: 30px;
+    background-color: white;
+    box-shadow: 0 0 0 0 #fff;   
+    border: 0;
+    padding: 0;
+    color: gray;    
+}
+
+.save:hover{
+    color: white;
+    background-color: gray;
+}
+
+/* большой блок в котором все кроме шапки */
+
+
+
+/*.triangle{
+	width: 0;
+	height: 0;
+    position: fixed;
+    right: 0px; 
+    bottom: 0px;
+
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	border-bottom: 50px solid pink;
+}
+
+*/  

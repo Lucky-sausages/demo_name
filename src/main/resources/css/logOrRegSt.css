@@ -1,0 +1,61 @@
+.bouble{
+    margin: 10px 20px 5px 20px;
+}
+
+.text{
+    font-family: cursive;
+    text-align: left;
+    font-size: 30px; 
+    margin: 10px 20px 5px 20px;
+}
+
+.login,
+.registr{
+    width:  40%;
+    height: 240px;
+    margin: 10px 0% 0% 0%;
+    min-width: 490px;    
+}
+
+table{
+    margin: 10px 20px 5px 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td{
+    min-width: 40px;
+}
+
+h1{
+     text-align: center;
+     font-family: cursive;
+     margin: 0px 20px 20px 20px;
+     color: darkgreen;
+     font-size: 40px;
+}
+
+input{
+    margin-left 10px;
+    width: 280px;
+    height: 35px;
+    font-size: 30px;
+    border: 0px;
+    border-bottom: 1px dashed #000;
+    }
+
+
+button{   
+    background-color: lightgreen;
+    border-radius: 20px 20px 20px 20px;
+    width:  auto;
+    height: 35px;
+    margin: 10px 10px 10px 10px;
+    font-size: 20px;
+    font-family: cursive;
+}
+
+
+.centre{
+    text-align: center;
+}

@@ -11,7 +11,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private long id;
 
     private String login;
 
@@ -19,4 +19,10 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<People> people;
+
+    public User(String login) {
+        this.login = login;
+    }
+
+    public User() {}
 }

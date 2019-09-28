@@ -3,6 +3,7 @@ package com.example.demoname.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -18,6 +19,8 @@ public class Post {
     private People people;
 
     private String text;
+
+    private Date date;
 
     @OneToMany(mappedBy = "post")
     private List<Media> media;
