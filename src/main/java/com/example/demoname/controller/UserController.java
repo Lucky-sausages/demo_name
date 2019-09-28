@@ -1,6 +1,7 @@
 package com.example.demoname.controller;
 
 import com.example.demoname.domain.User;
+import com.example.demoname.dto.UserDTO;
 import com.example.demoname.service.JwtService;
 import com.example.demoname.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/users")
 public class UserController {
     private UserService userService;
@@ -25,17 +27,17 @@ public class UserController {
     }
 
     @GetMapping("/auth")
-    public Map auth(@RequestParam String login, @RequestParam String password) {
-        User user = userService.findByLoginAndPassword(login, password).orElseThrow(() -> new ValidationException("Wrong name or password"));
+    public Map auth(@RequestBody UserDTO userDTO) {
+        User user = userService.findByLoginAndPassword(userDTO.getLogin(), userDTO.getPassword()).orElseThrow(() -> new ValidationException("Wrong name or password"));
         Map<String, String> res = new HashMap<>();
         res.put("token", jwtService.create(user));
         return res;
     }
 
     @PostMapping
-    public ResponseEntity<?> register(@RequestParam String login, @RequestParam String password) {
-        User user = new User(login);
-        userService.save(user, password);
+    public ResponseEntity<?> register(@RequestBody UserDTO userDTO) {
+        User user = new User(userDTO.getLogin());
+        userService.save(user, userDTO.getPassword());
         return ResponseEntity.ok().build();
     }
 }
