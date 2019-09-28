@@ -5,10 +5,7 @@ import com.example.demoname.dto.PostDTO;
 import com.jayway.jsonpath.DocumentContext;
 import net.minidev.json.JSONArray;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class VkPostParser {
 
@@ -21,6 +18,7 @@ public class VkPostParser {
         queryMap = new HashMap<>();
         queryMap.put("owner_id", "$.response.items[%d].owner_id");
         queryMap.put("id", "$.response.items[%d].id");
+        queryMap.put("ids", "$.response.items[*].id");
         queryMap.put("date", "$.response.items[%d].date");
         queryMap.put("text", "$.response.items[%d].text");
         queryMap.put("attachments", "$.response.items[%d].attachments[*]");
@@ -31,12 +29,12 @@ public class VkPostParser {
         }
 
 
-    public List<Long> getId()
+    public List<Integer> getId()
     {
-        List<Long> outputList = new ArrayList<>();
-        JSONArray array = parsedData.read(queryMap.get("id"));
+        List<Integer> outputList = new ArrayList<>();
+        JSONArray array = parsedData.read(queryMap.get("ids"));
         for (Object item : array)
-            outputList.add((Long) item);
+            outputList.add((Integer)item);
         return outputList;
     }
 
@@ -44,14 +42,14 @@ public class VkPostParser {
     public List<PostDTO> getPosts(){
 
         List<PostDTO> outputList = new ArrayList<>();
-        List<Long> id = getId();
+        List<Integer> id = getId();
         int count = id.size();
 
         for (int i=0;i<count;i++){
             PostDTO post = new PostDTO();
             //String displayUrl = parsedData.read(String.format(queryMap.get("display_url"), i));
-            String owner_id = parsedData.read(String.format(queryMap.get("owner_id"), i));
-            String post_id = parsedData.read(String.format(queryMap.get("id"), i));
+            String owner_id = parsedData.read(String.format(queryMap.get("owner_id"), i)).toString();
+            String post_id = parsedData.read(String.format(queryMap.get("id"), i)).toString();
             post.setLink("https://vk.com/wall" + owner_id + "_" + post_id);
 
             String text = parsedData.read(String.format(queryMap.get("text"), i));
@@ -64,7 +62,8 @@ public class VkPostParser {
             }
 
             post.setText(text);
-            post.setDate(parsedData.read(String.format(queryMap.get("data"), i)));
+            int timestamp = parsedData.read(String.format(queryMap.get("date"), i));
+            post.setDate(new Date(timestamp * 1000L));
             post.setMedia(getMedia(i));
             outputList.add(post);
         }
