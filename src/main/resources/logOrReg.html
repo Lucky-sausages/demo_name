@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+  <head>
+    <meta charset="utf-8">
+    <title>LS</title>
+    <link rel="stylesheet" href="css/headAndBubles.css">
+      <link rel="stylesheet" href="css/logOrRegSt.css">
+  </head>
+
+  <body>
+      
+     <div class="page_header">
+          <div class="logo">
+              LS              
+          </div>
+      </div>
+     
+      <div class="block">
+      <div  class="buble login" 
+           style=" font-family: cursive; font-size: 15px;">
+        <br>
+        <h1>Вход</h1>
+        <table class="text">
+            <tr><td>Логин</td><td><input type="text" id="loginL" style="color: #777" value = "Введите логин" onfocus="if (this.value == 'Введите логин') {this.value = ''; this.style.color = '#000';}" onblur="if (this.value == '') {this.value = 'Введите логин'; this.style.color = '#777';}"></td></tr>
+            <tr><td>Пароль</td><td><input type="password" id="passwordL"></td></tr>
+        </table>
+        <div class="centre" >
+            <button>Войти</button> или <button>Зарегестрироваться</button> <!-- сюда подтягивать действие -->
+        </div>
+      </div>    
+      </div>    
+    </body>
+    
+</html>
