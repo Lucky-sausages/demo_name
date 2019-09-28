@@ -77,13 +77,4 @@ public class VkPostParser {
         return outputList;
     }
 
-    public void debug() {
-        List<String> outputList = new ArrayList<>();
-        JSONArray array = parsedData.read(queryMap.get("owner_id"));
-        for (Object idObj : array)
-        {
-            int id = (Integer) idObj;
-            System.out.println(id);
-        }
-    }
 }
