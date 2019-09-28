@@ -15,8 +15,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public Optional<User> findByLogin(String login) {
-        return  userRepository.findByLogin(login);
+    public Optional<User> findByLoginAndPassword(String login, String password) {
+        return  userRepository.findByLoginAndPassword(login, password);
+    }
 
+    public void save(User user, String password) {
+        User createdUser = userRepository.save(user);
+        userRepository.updatePassword(createdUser.getId(), password);
     }
 }

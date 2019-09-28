@@ -19,4 +19,10 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<People> people;
+
+    public User(String login) {
+        this.login = login;
+    }
+
+    public User() {}
 }
