@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long>
 {
-    Post findFirstByPeopleOrderByDateAsc(People people);
+    Post findFirstByPeopleOrderByDateDesc(People people);
 
     List<Post> findAllByPeopleInOrderByDateDesc(Collection<People> people);
 }

@@ -114,7 +114,7 @@ public class PostService
                     .collect(Collectors.toList());
 
             //Date threshold = postRepository.findFirstByPeopleOrderByDateAsc(people).getDate();
-            Post last = postRepository.findFirstByPeopleOrderByDateAsc(people);
+            Post last = postRepository.findFirstByPeopleOrderByDateDesc(people);
             Date threshold = last == null ? new Date(0) : last.getDate();
 
             for (String profileName : instagramProfileNames)

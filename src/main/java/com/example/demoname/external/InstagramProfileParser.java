@@ -111,7 +111,7 @@ public class InstagramProfileParser
         for (int i = 0; i < dateArray.size(); i++)
         {
             int timestamp = parsedData.read(String.format(queryMap.get("timestamp"), i));
-            if (timestamp < thresholdTimestamp)
+            if (timestamp <= thresholdTimestamp)
                 break;
 
             String typeName = parsedData.read(String.format(queryMap.get("typename"), i));
