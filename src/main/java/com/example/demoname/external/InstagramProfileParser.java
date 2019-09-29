@@ -84,7 +84,8 @@ public class InstagramProfileParser
                 {
                     text = null;
                 }
-                Date date = new Date((Integer) parsedData.read(String.format(queryMap.get("timestamp"), i)));
+                int ts = parsedData.read(String.format(queryMap.get("timestamp"), i));
+                Date date = new Date(ts * 1000L);
                 String displayUrl = parsedData.read(String.format(queryMap.get("display_url"), i));
                 MediaDTO media = new MediaDTO();
                 media.setLink(displayUrl);
@@ -129,7 +130,8 @@ public class InstagramProfileParser
                 {
                     text = null;
                 }
-                Date date = new Date((Integer) parsedData.read(String.format(queryMap.get("timestamp"), i)));
+                int ts = parsedData.read(String.format(queryMap.get("timestamp"), i));
+                Date date = new Date(ts * 1000L);
                 String displayUrl = parsedData.read(String.format(queryMap.get("display_url"), i));
                 MediaDTO media = new MediaDTO();
                 media.setLink(displayUrl);
