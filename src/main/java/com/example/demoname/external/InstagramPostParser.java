@@ -3,6 +3,7 @@ package com.example.demoname.external;
 import com.example.demoname.dto.MediaDTO;
 import com.example.demoname.dto.PostDTO;
 import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.PathNotFoundException;
 import net.minidev.json.JSONArray;
 
 import java.util.*;
@@ -29,7 +30,14 @@ class InstagramPostParser
         String postType = parsedDocument.read(getPostTypePath);
         String shortCode = parsedDocument.read(queryMap.get("shortcode"));
         PostDTO post = new PostDTO();
-        String caption = parsedDocument.read(queryMap.get("caption"));
+        String caption;
+        try {
+            caption = parsedDocument.read(queryMap.get("caption"));
+        }
+        catch (PathNotFoundException e)
+        {
+            caption = "";
+        }
         post.setText(caption);
         post.setLink(String.format("https://instagram.com/p/%s/", shortCode));
 

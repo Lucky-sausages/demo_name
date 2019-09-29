@@ -10,6 +10,8 @@ import com.example.demoname.external.InstagramManager;
 import com.example.demoname.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -63,12 +65,14 @@ public class PostService
         return dto;
     }
 
-    private Post postDTOToPost(PostDTO dto)
-    {
+    private Post postDTOToPost(PostDTO dto) {
         Post post = new Post();
         post.setLink(dto.getLink());
         post.setDate(dto.getDate());
-        post.setText(dto.getText());
+        if (dto.getText() != null) {
+            byte[] utf8 = dto.getText().getBytes(StandardCharsets.UTF_8);
+            post.setText(new String(utf8, StandardCharsets.UTF_8));
+        } else post.setText("");
         post.setMedia(mediaDTOListToMediaList(dto.getMedia()));
         post.getMedia().forEach(media -> media.setPost(post));
         return post;
