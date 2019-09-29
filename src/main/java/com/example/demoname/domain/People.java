@@ -17,9 +17,9 @@ public class People {
 
     String name;
 
-    @OneToMany(mappedBy = "people")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "people")
     private List<Post> posts;
 
-    @OneToMany(mappedBy = "people")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "people",cascade = CascadeType.ALL)
     private List<Link> links;
 }

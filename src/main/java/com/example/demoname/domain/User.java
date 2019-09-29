@@ -17,7 +17,7 @@ public class User {
 
     private String passwordSHA;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
     private List<People> people;
 
     public User(String login) {

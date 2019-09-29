@@ -103,7 +103,9 @@ public class PostService
                     .map(link -> link.getLink().substring("https://instagram.com/".length()))
                     .collect(Collectors.toList());
 
-            Date threshold = postRepository.findFirstByPeopleOrderByDateAsc(people).getDate();
+            //Date threshold = postRepository.findFirstByPeopleOrderByDateAsc(people).getDate();
+            Post last = postRepository.findFirstByPeopleOrderByDateAsc(people);
+            Date threshold = last == null ? new Date(0) : last.getDate();
 
             for (String profileName : instagramProfileNames)
             {
