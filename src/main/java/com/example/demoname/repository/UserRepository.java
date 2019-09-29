@@ -20,4 +20,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "UPDATE users SET passwordSha=SHA1(?2) WHERE id=?1", nativeQuery = true)
     void updatePassword(long id, String password);
 
+    int countByLogin(String login);
 }

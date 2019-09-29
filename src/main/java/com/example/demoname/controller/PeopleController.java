@@ -6,10 +6,7 @@ import com.example.demoname.exception.*;
 import com.example.demoname.service.PeopleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -27,7 +24,7 @@ public class PeopleController extends ApiController{
     public ResponseEntity<?> add_person(User user, @Valid @RequestBody PeopleDTO peopleDTO,
                                         BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors().get(0).getDefaultMessage());
+            new ValidationException(bindingResult.getAllErrors().get(0).getDefaultMessage());
         }
         peopleService.save(peopleDTO, user);
         return ResponseEntity.ok().build();
