@@ -65,10 +65,11 @@ public class PostService
         return dto;
     }
 
-    private Post postDTOToPost(PostDTO dto) {
+    private Post postDTOToPost(PostDTO dto, People people) {
         Post post = new Post();
         post.setLink(dto.getLink());
         post.setDate(dto.getDate());
+        post.setPeople(people);
         if (dto.getText() != null) {
             byte[] utf8 = dto.getText().getBytes(StandardCharsets.UTF_8);
             post.setText(new String(utf8, StandardCharsets.UTF_8));
@@ -115,7 +116,7 @@ public class PostService
             {
                 List<PostDTO> recentPostDTOs = InstagramManager.getRecentPosts(profileName, threshold);
                 List<Post> recentPosts = new ArrayList<>();
-                recentPostDTOs.forEach(dto -> recentPosts.add(postDTOToPost(dto)));
+                recentPostDTOs.forEach(dto -> recentPosts.add(postDTOToPost(dto, people)));
                 postRepository.saveAll(recentPosts);
             }
         }
