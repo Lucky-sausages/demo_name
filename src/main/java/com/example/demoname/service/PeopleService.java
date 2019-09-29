@@ -4,6 +4,7 @@ import com.example.demoname.domain.Link;
 import com.example.demoname.domain.People;
 import com.example.demoname.domain.User;
 import com.example.demoname.dto.PeopleDTO;
+import com.example.demoname.exception.ValidationException;
 import com.example.demoname.repository.LinkRepository;
 import com.example.demoname.repository.PeopleRepository;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,9 @@ public class PeopleService {
 
     public void save(PeopleDTO peopleDTO, User user) {
         People people = new People();
+        if (peopleDTO.getName()== null || (peopleDTO.getVk_name() == null && peopleDTO.getInst_name()==null)) {
+            throw new ValidationException("Name and one of links should be not empty");
+        }
         people.setName(peopleDTO.getName());
         //people.setLinks(links);
         people.setUser(user);

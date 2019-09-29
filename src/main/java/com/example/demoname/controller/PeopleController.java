@@ -24,7 +24,7 @@ public class PeopleController extends ApiController{
     public ResponseEntity<?> add_person(User user, @Valid @RequestBody PeopleDTO peopleDTO,
                                         BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors().get(0).getDefaultMessage());
+            new ValidationException(bindingResult.getAllErrors().get(0).getDefaultMessage());
         }
         peopleService.save(peopleDTO, user);
         return ResponseEntity.ok().build();
