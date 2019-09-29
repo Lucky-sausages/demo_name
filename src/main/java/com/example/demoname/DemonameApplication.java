@@ -16,9 +16,16 @@ public class DemonameApplication {
 
 		VkWebRequest Request = new VkWebRequest();
 
-		VkPostParser Parser = new VkPostParser(Request.getPostParsedJson("ranyarwen.sinderama", 1));
+		VkPostParser Parser = new VkPostParser(Request.getPostParsedJson("ranyarwen.sinderama", 4,0));
 		List<PostDTO> outputList = Parser.getPosts();
-		System.out.println(outputList.get(0).getDate());
+		for (int i=0; i<outputList.size(); i++){
+			System.out.println(outputList.get(i).getLink());
+			System.out.println(outputList.get(i).getDate());
+			System.out.println(outputList.get(i).getText());
+			for (int j=0; j<outputList.get(i).getMedia().size();j++){
+				System.out.println((outputList.get(i).getMedia().get(j).getLink()));
+			}
+		}
 
 	}
 
