@@ -5,10 +5,11 @@ import com.example.demoname.domain.People;
 import com.example.demoname.domain.Post;
 import com.example.demoname.dto.PostDTO;
 import com.jayway.jsonpath.DocumentContext;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class VkManager {
 
     public static VkWebRequest WebRequest = VkWebRequest.getInstance();
@@ -24,7 +25,7 @@ public class VkManager {
         getPosts(people, count, offset);
     }
 
-    private List<Post> getPosts (People people, Integer count, Integer offset){
+    public List<Post> getPosts (People people, Integer count, Integer offset){
 
         DocumentContext postsParsedJson = WebRequest.getPostParsedJson(people.getDomain(), count, offset);
 

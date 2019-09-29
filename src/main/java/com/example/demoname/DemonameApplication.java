@@ -13,7 +13,7 @@ public class DemonameApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemonameApplication.class, args);
-
+/*
 		VkWebRequest Request = new VkWebRequest();
 
 		VkPostParser Parser = new VkPostParser(Request.getPostParsedJson("ranyarwen.sinderama", 4,0));
@@ -26,7 +26,7 @@ public class DemonameApplication {
 				System.out.println((outputList.get(i).getMedia().get(j).getLink()));
 			}
 		}
-
+*/
 	}
 
 }
