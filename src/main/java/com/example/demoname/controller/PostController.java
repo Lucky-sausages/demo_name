@@ -3,10 +3,7 @@ package com.example.demoname.controller;
 import com.example.demoname.domain.User;
 import com.example.demoname.dto.PostDTO;
 import com.example.demoname.service.PostService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +19,7 @@ public class PostController extends ApiController
         this.postService = postService;
     }
 
-    @GetMapping("/update")
+    @PostMapping("/update")
     public void updatePosts(User user)
     {
         postService.updatePosts(user);

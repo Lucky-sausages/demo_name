@@ -1,6 +1,7 @@
 package com.example.demoname.controller;
 
 import com.example.demoname.domain.User;
+import com.example.demoname.dto.UserDTO;
 import com.example.demoname.service.JwtService;
 import com.example.demoname.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -34,9 +35,9 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> register(@RequestParam String login, @RequestParam String password) {
-        User user = new User(login);
-        userService.save(user, password);
+    public ResponseEntity<?> register(@RequestBody UserDTO userDTO) {
+        User user = new User(userDTO.getLogin());
+        userService.save(user, userDTO.getPassword());
         return ResponseEntity.ok().build();
     }
 }
