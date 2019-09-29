@@ -13,7 +13,7 @@ public class Media {
 
     private String link;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private Post post;
 
 }

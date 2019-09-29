@@ -95,7 +95,7 @@ class InstagramPostParser
                     media.setLink((String) node.get("display_url"));
                     break;
                 case "GraphVideo":
-                    media.setLink("video_url");
+                    media.setLink((String) node.get("video_url"));
             }
             mediaList.add(media);
         }

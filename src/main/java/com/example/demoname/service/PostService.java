@@ -28,7 +28,7 @@ public class PostService
         this.postRepository = postRepository;
         this.mediaRepository = mediaRepository;
     }
-    
+
     private MediaDTO mediaToMediaDTO(Media media)
     {
         MediaDTO dto = new MediaDTO();
@@ -77,7 +77,7 @@ public class PostService
             post.setText(new String(utf8, StandardCharsets.UTF_8));
         } else post.setText("");
         post.setMedia(mediaDTOListToMediaList(dto.getMedia()));
-        post.getMedia().forEach(media -> { media.setPost(post); mediaRepository.save(media); });
+        post.getMedia().forEach(media -> { mediaRepository.save(media); media.setPost(post); });
         return post;
     }
 
@@ -96,7 +96,7 @@ public class PostService
     public List<PostDTO> getPosts(User user)
     {
         List<People> peopleList = user.getPeople();
-        List<Post> feed = postRepository.findAllByPeopleInOrderByDateAsc(peopleList);
+        List<Post> feed = postRepository.findAllByPeopleInOrderByDateDesc(peopleList);
         List<PostDTO> feedDTO = new ArrayList<>();
         feed.forEach(it -> feedDTO.add(postToPostDTO(it)));
         return feedDTO;
