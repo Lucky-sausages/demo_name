@@ -15,6 +15,7 @@ public class People {
     @ManyToOne
     private User user;
 
+    String domain;
     String name;
 
     @OneToMany(mappedBy = "people")
