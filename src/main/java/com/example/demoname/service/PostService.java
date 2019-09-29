@@ -7,10 +7,10 @@ import com.example.demoname.domain.User;
 import com.example.demoname.dto.MediaDTO;
 import com.example.demoname.dto.PostDTO;
 import com.example.demoname.external.InstagramManager;
+import com.example.demoname.repository.MediaRepository;
 import com.example.demoname.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,12 +21,14 @@ import java.util.stream.Collectors;
 public class PostService
 {
     private PostRepository postRepository;
+    private MediaRepository mediaRepository;
 
-    public PostService(PostRepository postRepository)
+    public PostService(PostRepository postRepository, MediaRepository mediaRepository)
     {
         this.postRepository = postRepository;
+        this.mediaRepository = mediaRepository;
     }
-
+    
     private MediaDTO mediaToMediaDTO(Media media)
     {
         MediaDTO dto = new MediaDTO();
@@ -75,7 +77,7 @@ public class PostService
             post.setText(new String(utf8, StandardCharsets.UTF_8));
         } else post.setText("");
         post.setMedia(mediaDTOListToMediaList(dto.getMedia()));
-        post.getMedia().forEach(media -> media.setPost(post));
+        post.getMedia().forEach(media -> { media.setPost(post); mediaRepository.save(media); });
         return post;
     }
 
@@ -83,7 +85,10 @@ public class PostService
     {
         Post post = new Post();
         post.setLink(dto.getLink());
-        post.setText(dto.getText());
+        String text = dto.getText();
+        byte[] utf8Bytes = text.getBytes(StandardCharsets.UTF_8);
+        text = new String(utf8Bytes);
+        post.setText(text);
         post.setDate(dto.getDate());
         return post;
     }
