@@ -67,7 +67,6 @@ public class VkPostParser {
 
         for (int i=0;i<count;i++){
             PostDTO post = new PostDTO();
-            //String displayUrl = parsedData.read(String.format(queryMap.get("display_url"), i));
             String owner_id = parsedData.read(String.format(queryMap.get("owner_id"), i)).toString();
             String post_id = parsedData.read(String.format(queryMap.get("id"), i)).toString();
             post.setLink("https://vk.com/wall" + owner_id + "_" + post_id);
