@@ -29,7 +29,7 @@ public class PeopleService {
         people.setUser(user);
         people = peopleRepository.save(people);
         List<Link> links = new ArrayList<Link>();
-        links.add(new Link("https://www.instagram.com/" + peopleDTO.getInst_name(), people));
+        links.add(new Link("https://instagram.com/" + peopleDTO.getInst_name(), people));
         links.add(new Link("https://vk.com/" + peopleDTO.getVk_name(), people));
         links = links.stream().map(link -> linkRepository.save(link)).collect(Collectors.toList());
     }
